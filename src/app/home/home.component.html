@@ -120,7 +120,8 @@
 <!-- VERIFY -->
 <div class="buttons-container uk-container uk-text-center" *ngIf="openVerify" tabindex="-1">
   <div class="message-container" style="margin-top: 100px">
-    <p style="font-size: 22px;color: rgb(255, 255, 255); text-align: center; text-shadow: 2px 2px 5px #00000087;">{{ 'HOME.OTP' | translate }}</p>
+    <p style="font-size: 22px;color: rgb(255, 255, 255); text-align: center; text-shadow: 2px 2px 5px #00000087;" *ngIf="!sessionService.isSubscribed">{{ 'HOME.OTP' | translate }}</p>
+    <p style="font-size: 22px;color: rgb(255, 255, 255); text-align: center; text-shadow: 2px 2px 5px #00000087;" *ngIf="sessionService.isSubscribed">{{ 'HOME.OTP-LOGIN' | translate }}</p>
     <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
   </div>
   <div class="buttons-container uk-container uk-text-center" *ngIf="openVerify" style="max-width: 595px;">
@@ -147,7 +148,7 @@
     <div class="buttons-container uk-container uk-text-center">
         <p *ngIf="verErrorMes" style="font-size: 12px; color: white;">{{ 'HOME.VERERROR' | translate }}</p>
       <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="!sessionService.isSubscribed" (click)="verify(pin.value)">{{ 'HOME.CONFIRM' | translate }}</button> 
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="sessionService.isSubscribed"(click)="verify(pin.value)">{{ 'HOME.LOGIN' | translate }}</button> 
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="sessionService.isSubscribed" (click)="verify(pin.value)">{{ 'HOME.LOGIN' | translate }}</button> 
     </div>
     <div class="message-container">
       <p style=" font-weight: bold; font-size: 20px; text-shadow: 2px 2px 5px #00000087;"><a (click)="resetPass()" style="color:rgb(255, 255, 255); text-decoration: underline;">{{ 'HOME.RESET' | translate }}</a>

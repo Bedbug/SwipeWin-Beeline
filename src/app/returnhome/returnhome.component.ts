@@ -29,6 +29,8 @@ export class ReturnhomeComponent implements OnInit {
   
   // Check if already a subscribed player
   private _isSubscribed = false;
+  // Check if already a subscribed player
+  private _isSubClosed = false;
   // Check if he has cashback waiting
   public _cashBackAmount = 0;
   // Check if check is checked so he can click the button
@@ -127,8 +129,11 @@ export class ReturnhomeComponent implements OnInit {
     }
     else {
       this._isSubscribed = this.sessionService.isSubscribed;
-      console.log(this.sessionService.msisdn);
-      console.log("this.session "+this.sessionService.token);
+      this._isSubClosed = this.sessionService.subscription.closed;
+      // this._isSubClosed = true;
+      // console.log(this.sessionService.msisdn);
+      // console.log("this.session "+this.sessionService.token);
+      console.table(this.sessionService);
       // this._cashBackAmount = this.sessionService._cashBackAmount;
       // this._cashBackAmount = 500;
       
@@ -140,7 +145,7 @@ export class ReturnhomeComponent implements OnInit {
         (data:User) => {
           this.sessionService.user = data;
           this._gamesPlayed = this.sessionService.gamesPlayed;
-          
+         
           console.log("this._gamesPlayed "+this._gamesPlayed);
           console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
           // this._gamesPlayed = 3;

@@ -30,7 +30,7 @@ export class ReturnhomeComponent implements OnInit {
   // Check if already a subscribed player
   private _isSubscribed = false;
   // Check if already a subscribed player
-  private _isSubClosed = false;
+  public _isSubClosed = false;
   // Check if he has cashback waiting
   public _cashBackAmount = 0;
   // Check if check is checked so he can click the button

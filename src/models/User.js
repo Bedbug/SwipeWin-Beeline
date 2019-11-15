@@ -12,6 +12,7 @@ var User = (function () {
         this.bestScoreToday = 0;
         this.totalDaysPlaying = 0;
         this.wallet = null;
+        this.optIn = false;
     }
     User.prototype.toProfileDTO = function () {
         return {
@@ -19,7 +20,8 @@ var User = (function () {
             username: this.username,
             age: this.age,
             gender: this.gender,
-            msisdn: this.msisdn
+            msisdn: this.msisdn,
+            optIn: this.optIn
         };
     };
     return User;

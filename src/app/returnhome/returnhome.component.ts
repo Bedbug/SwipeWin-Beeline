@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
 import UIkit from 'uikit';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-returnhome',
@@ -30,7 +31,7 @@ export class ReturnhomeComponent implements OnInit {
   // Check if already a subscribed player
   private _isSubscribed = false;
   // Check if already a subscribed player
-  public _isSubClosed = false;
+  public _optIn = false;
   // Check if he has cashback waiting
   public _cashBackAmount = 0;
   // Check if check is checked so he can click the button
@@ -129,8 +130,8 @@ export class ReturnhomeComponent implements OnInit {
     }
     else {
       this._isSubscribed = this.sessionService.isSubscribed;
-      this._isSubClosed = this.sessionService.subscription.closed;
-      // this._isSubClosed = true;
+      this._optIn = this.sessionService.optIn;
+      // this._optIn = false;
       // console.log(this.sessionService.msisdn);
       // console.log("this.session "+this.sessionService.token);
       console.table(this.sessionService);
@@ -143,11 +144,12 @@ export class ReturnhomeComponent implements OnInit {
       
       this.dataService.getUserProfile().then( 
         (data:User) => {
+          console.table(data);
           this.sessionService.user = data;
           this._gamesPlayed = this.sessionService.gamesPlayed;
-         
+          
           console.log("this._gamesPlayed "+this._gamesPlayed);
-          console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
+          console.log("this.optIn "+this.sessionService.gamesPlayed);
           // this._gamesPlayed = 3;
           // this._cashBackAmount = this.sessionService.user.wallet.pendingMaturityCashback + this.sessionService.user.wallet.pendingTransferCashback;
         },

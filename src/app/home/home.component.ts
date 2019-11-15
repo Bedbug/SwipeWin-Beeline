@@ -235,6 +235,7 @@ export class HomeComponent implements OnInit {
         this.sessionService.isSubscribed = body.isSubscribed;
       if (body.gamesPlayedToday !== undefined)
         this.sessionService.gamesPlayed = body.gamesPlayedToday;
+      
 
       this.showLogin = false;
       this.openVerify = true;
@@ -282,6 +283,8 @@ export class HomeComponent implements OnInit {
         this.sessionService.isSubscribed = body.isSubscribed;
       if (body.gamesPlayedToday !== undefined)
         this.sessionService.gamesPlayed = body.gamesPlayedToday;
+      if (body.optIn !== undefined)
+        this.sessionService.optIn = body.optIn;
       this.sessionService.Serialize();
 
       // Goto the returnHome page

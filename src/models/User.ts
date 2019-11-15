@@ -12,6 +12,8 @@ class User {
     bestScoreToday: number = 0;
     totalDaysPlaying: number = 0;
     wallet: any = null;
+    optIn: boolean = false;
+
 
     public toProfileDTO() {
         return {
@@ -20,7 +22,8 @@ class User {
             age: this.age,
             gender: this.gender,
             msisdn: this.msisdn,
-            languagePreference: this.languagePreference
+            languagePreference: this.languagePreference,
+            optIn: this.optIn
         };
     }
 };

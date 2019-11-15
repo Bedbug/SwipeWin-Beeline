@@ -47,6 +47,9 @@ export class SessionService implements OnDestroy {
   
   // tells whether the user is eligible to play the game
   isEligible: boolean = false;
+
+  // tells whether the user is optIn to the game
+  optIn: boolean = false;
   
   // how many games the user has played today
   gamesPlayed: number = 0;

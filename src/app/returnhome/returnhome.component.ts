@@ -64,7 +64,7 @@ export class ReturnhomeComponent implements OnInit {
   }
 
   startGame() {
-    console.log("Games Played: "+ this.gamesPlayed);
+    // console.log("Games Played: "+ this.gamesPlayed);
     
     // if(this._gamesPlayed >= 3) {
     //   // popup modal with error
@@ -134,7 +134,7 @@ export class ReturnhomeComponent implements OnInit {
       // this._optIn = false;
       // console.log(this.sessionService.msisdn);
       // console.log("this.session "+this.sessionService.token);
-      console.table(this.sessionService);
+      // console.table(this.sessionService);
       // this._cashBackAmount = this.sessionService._cashBackAmount;
       // this._cashBackAmount = 500;
       
@@ -144,12 +144,12 @@ export class ReturnhomeComponent implements OnInit {
       
       this.dataService.getUserProfile().then( 
         (data:User) => {
-          console.table(data);
+          // console.table(data);
           this.sessionService.user = data;
           this._gamesPlayed = this.sessionService.gamesPlayed;
           
-          console.log("this._gamesPlayed "+this._gamesPlayed);
-          console.log("this.optIn "+this.sessionService.gamesPlayed);
+          // console.log("this._gamesPlayed "+this._gamesPlayed);
+          // console.log("this.optIn "+this.sessionService.gamesPlayed);
           // this._gamesPlayed = 3;
           // this._cashBackAmount = this.sessionService.user.wallet.pendingMaturityCashback + this.sessionService.user.wallet.pendingTransferCashback;
         },

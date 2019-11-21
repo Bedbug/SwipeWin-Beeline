@@ -15,7 +15,7 @@
     </thead>
     <tr *ngFor = "let winner of dailyWinners$; let i = index" [hidden]="!showDay || !dailyWinners$">
       <td>{{winner.winDate}}</td>
-      <td>{{winner.msisdn}} - {{winner.username}}</td>
+      <td>{{winner.msisdn}}</td>
       <td>{{winner.winSum}}</td>
     </tr>
     <!--<tr *ngFor = "let winner of monthlyWinners$; let i = index" [hidden]="showDay || !monthlyWinners$">-->

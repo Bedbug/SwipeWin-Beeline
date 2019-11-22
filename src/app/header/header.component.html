@@ -112,7 +112,8 @@
     </ul>
     <div class="uk-navbar-center">
       <a class="uk-navbar-item uk-logo logo-big" (click)="gotoHome()">
-        <img src="assets/images/logo-sw.svg">
+        <img *ngIf="alignAllLeft" src="assets/images/logo-sw.svg">
+        <img *ngIf="!alignAllLeft" src="assets/images/logo-sw2.svg">
       </a>
     </div>
     <div class="mts-logo uk-navbar-item uk-logo logo-big" style="width:85px;">

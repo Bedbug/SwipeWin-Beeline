@@ -86,7 +86,7 @@ export class HeaderComponent implements OnInit {
    //  const browserLang = this.translate.getBrowserLang();
    //  console.log(browserLang);
    //  this.translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
-   if(this.alignAllLeft)
+   if(!this.alignAllLeft)
      this.translate.use("ru");
      else
      this.translate.use("kaz");

@@ -2,7 +2,7 @@
   <img src="assets/images/gulogo.svg" alt="">
 </div> -->
 
-<div class="slideshow-container" *ngIf="showLogin"  uk-slideshow="animation: fade; min-height: 300; max-height: 500; autoplay: true; autoplay-interval: 2000; pause-on-hover: false;" >
+<div class="slideshow-container" *ngIf="showLogin && !siteDown"  uk-slideshow="animation: fade; min-height: 300; max-height: 500; autoplay: true; autoplay-interval: 2000; pause-on-hover: false;" >
 
   <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
     
@@ -78,14 +78,14 @@
 <br>
 <br>
 <!--LOG IN-->
-<div class="uk-container" *ngIf="showLogin">
+<div class="uk-container" *ngIf="showLogin && !siteDown">
   <!-- <div style="width: 100%; height: 100%; margin: -50px auto auto; max-width: 600px;">
     <lottie-animation-view  [options]="lottieConfig" (animCreate)="handleAnimation($event)" ></lottie-animation-view>
   </div> -->
 </div>
-<div class="buttons-container uk-container uk-text-center" *ngIf="showLogin" tabindex="-1">
+<div class="buttons-container uk-container uk-text-center" *ngIf="showLogin && !siteDown" tabindex="-1">
  
-<div class="buttons-container uk-container uk-text-center" *ngIf="showLogin" style="max-width: 595px; ">
+<div class="buttons-container uk-container uk-text-center" *ngIf="showLogin && !siteDown" style="max-width: 595px; ">
     
   <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
   <form >
@@ -226,6 +226,20 @@
 <!--    </p>-->
 <!--  </div>-->
   
+<div id="siteDown" class="uk-flex-top" uk-modal>
+    <div style= "text-align: center;" class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+      <img src="assets/images/logo-sw.svg" alt="">
+      <h4>{{ 'MESSAGES.MESSAGE_01' | translate }}</h4>
+    <pre>К сожалению, игра временно не доступна.
+      Попробуйте ещё раз позднее.</pre>
+    <!--<p>{{errorMsg}}</p>-->
+    <app-button *ngIf="!logOutBtn" [link_button]="true" class="uk-modal-close">{{ 'MESSAGES.MESSAGE_07' | translate }}</app-button>
+    <!-- <app-button *ngIf="gotofaqBtn" [link_button]="true" class="uk-modal-close" (click)="gotoFaqPage()">{{ 'MESSAGES.MESSAGE_14' | translate }}</app-button> -->
+    <!-- <app-button *ngIf="logOutBtn" [link_button]="true" class="uk-modal-close" (click)="logOutUser()">{{ 'MESSAGES.MESSAGE_07' | translate }}</app-button> -->
+      
+    </div>
+  </div>
+
   <div id="error" class="uk-flex-top" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
       <img src="assets/images/wanted.svg" alt="">

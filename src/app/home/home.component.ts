@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
   public lottieConfig: Object;
   private anim: any;
   private animationSpeed: number = 1;
-
+  public siteDown = false;
   
   constructor(
     private dataService : DataService, 
@@ -151,16 +151,34 @@ export class HomeComponent implements OnInit {
           }
       });
     
-    
-    // Load the game settings
-    this.dataService.fetchGameSettings().then(
-      data => {
-        this.sessionService.gameSettings = data;
+      if(this.sessionService.gameSettings.maintenance != null){
+        this.siteDown = this.sessionService.gameSettings.maintenance.siteDown
         this.localizationService.init(this.sessionService.gameSettings.localization);
-      },
-      err => {
-        console.error(err);
-      });
+        if(this.siteDown){
+          console.log("Site is Down!")            
+          let modalSiteDown = UIkit.modal("#siteDown");
+          modalSiteDown.show();
+        }
+      } else{
+        // Load the game settings
+        this.dataService.fetchGameSettings().then(
+          data => {
+            this.sessionService.gameSettings = data;
+            this.localizationService.init(this.sessionService.gameSettings.localization);
+            this.siteDown = this.sessionService.gameSettings.maintenance.siteDown
+            if(this.siteDown){
+              console.log("Site is Down!")            
+              let modalSiteDown = UIkit.modal("#siteDown", {escClose: false, bgClose: false});
+              modalSiteDown.show();
+            }
+          },
+          err => {
+            console.error(err);
+          });
+      }
+
+      
+    
   }
   
   public playGame($event) {

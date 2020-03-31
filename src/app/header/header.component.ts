@@ -4,6 +4,7 @@ import { filter } from 'rxjs/operators';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
+import { DataService } from '../data.service';
 
 declare const UIkit: any;
 
@@ -20,8 +21,8 @@ export class HeaderComponent implements OnInit {
 
   public mobileMenuState = false;
   public menuIconPath = 'menu';
-
-  constructor(private session: SessionService, private router: Router,public translate: TranslateService) 
+  public siteDown = true;
+  constructor(private dataService : DataService, private session: SessionService, private router: Router,public translate: TranslateService) 
   {
     // this.url = router.url;
   }
@@ -46,7 +47,24 @@ export class HeaderComponent implements OnInit {
         that.toggleClass();
       }
     });
+    // if(this.session.gameSettings.maintenance != null){
+    //   this.siteDown = this.session.gameSettings.maintenance.siteDown
+    // } else {
+    //   // Load the game settings
+    //   this.dataService.fetchGameSettings().then(
+    //     data => {
+    //       this.session.gameSettings = data;
+    //       if(this.session.gameSettings.maintenance.siteDown){
+    //         console.log("Site is Down!");
+    //         this.siteDown = this.session.gameSettings.maintenance.siteDown
+    //       }
+    //     },
+    //     err => {
+    //       console.error(err);
+    //     });
+    // }
 
+    
   }
 
   public toggleClass() {

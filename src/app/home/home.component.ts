@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
   private anim: any;
   private animationSpeed: number = 1;
   public siteDown = false;
+  public showMessage = true;
   
   constructor(
     private dataService : DataService, 
@@ -170,6 +171,11 @@ export class HomeComponent implements OnInit {
               console.log("Site is Down!")            
               let modalSiteDown = UIkit.modal("#siteDown", {escClose: false, bgClose: false});
               modalSiteDown.show();
+            }
+            if(this.showMessage){
+              console.log("Show message!")            
+              let modalIntroMessage = UIkit.modal("#introMes", {escClose: true, bgClose: true});
+              modalIntroMessage.show();
             }
           },
           err => {

@@ -8,6 +8,7 @@ class User {
     createdAt: Date = null;
     languagePreference: string = null;
     gamesPlayed: number = 0;
+    totalPoints:number = 0;
     bestScore: number = 0;
     bestScoreToday: number = 0;
     totalDaysPlaying: number = 0;

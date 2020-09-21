@@ -19,6 +19,9 @@ const VIEW_STATES = {
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  get totalPoints(): number {
+    return this._totalPoints;
+  }
   get bestResultToday(): number {
     return this._bestResultToday;
   }
@@ -35,6 +38,7 @@ export class ProfileComponent implements OnInit {
   
   public _phone = "+7 (000) 000-00-00";
   private _totalGamesCount = 0;
+  private _totalPoints = 0;
   private _bestResultAllTime = 0;
   private _bestResultToday = 0;
   public _cashBackAmount = 0;
@@ -78,6 +82,7 @@ export class ProfileComponent implements OnInit {
           console.table(data);
           this.sessionService.user = data;
           this.userName = data.username;
+          this._totalPoints = data.totalPoints;
           this._totalGamesCount = data.gamesPlayed;
           this._bestResultAllTime = data.bestScore;
           this._bestResultToday = data.bestScoreToday;

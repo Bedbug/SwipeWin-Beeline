@@ -30,7 +30,7 @@
   <div class="results uk-text-center uk-child-width-1-3 uk-grid-collapse uk-grid-divider" uk-grid>
     <div>
       <div class="number">
-        {{bestResultToday || '0'}}
+        {{totalPoints || '0'}}
       </div>
       <div class="text">
         {{ 'PROFILE.POINTS' | translate }}
@@ -44,7 +44,7 @@
     </div>
     <div>
       <div class="number">
-        {{bestResultAllTime || '0'}}
+        {{bestResultToday || '0'}}
         
       </div>
       <div class="text">{{ 'PROFILE.BEST' | translate }}</div>

@@ -301,6 +301,7 @@ export class HomeComponent implements OnInit {
 
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
+      console.table(body);
       if (body.isEligible !== undefined)
         this.sessionService.isEligible = body.isEligible;
       if (body.isSubscribed != undefined)
@@ -309,6 +310,9 @@ export class HomeComponent implements OnInit {
         this.sessionService.gamesPlayed = body.gamesPlayedToday;
       if (body.optIn !== undefined)
         this.sessionService.optIn = body.optIn;
+      if (body.gamesPlayedFromLastOptin !== undefined)
+        this.sessionService.gamesPlayedFromLastOptin = body.gamesPlayedFromLastOptin;
+
       this.sessionService.Serialize();
 
       // Goto the returnHome page

@@ -51,6 +51,9 @@ export class SessionService implements OnDestroy {
   // tells whether the user is optIn to the game
   optIn: boolean = false;
   
+  // If the free game is played 
+  gamesPlayedFromLastOptin: number = 0;
+  
   // how many games the user has played today
   gamesPlayed: number = 0;
   

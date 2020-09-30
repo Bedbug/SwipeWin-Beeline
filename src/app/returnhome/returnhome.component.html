@@ -79,10 +79,10 @@
 <div class="buttons-container uk-container uk-text-center">
     <!--<app-button *ngIf="isSubscribed" [secondary]="isSubscribed" uk-toggle="target: #error">Демо игра</app-button>-->
     <!--<app-button *ngIf="_gamesPlayed >= 3" [secondary]="isSubscribed" (click)="startFreeGame()">Играть в удовольствие</app-button>-->
-    <button class="uk-button uk-button-default play-button uk-width-1-1"  *ngIf="_gamesPlayed == 0 && _optIn" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button>
+    <button class="uk-button uk-button-default play-button uk-width-1-1"  *ngIf="_gamesPlayed == 0 && (_optIn || _gamesPlayedFromLastOptin == 0)" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button>
     <button class="uk-button uk-button-default play-button uk-width-1-1"  *ngIf="_gamesPlayed > 0 && _gamesPlayed < 3 && _optIn" (click)="OpenSureModal()">{{ 'HOME.BUY' | translate }}</button>
     <app-button *ngIf="_gamesPlayed >= 3 && _optIn" [disabled]="!isChecked" [primary]="isChecked" >{{ 'HOME.NOMORE' | translate }}</app-button>
-    <app-button *ngIf="!_optIn" [disabled]="!isChecked" [primary]="isChecked" >{{ 'MESSAGES.MESSAGE_14' | translate }}</app-button>
+    <app-button *ngIf="!_optIn && _gamesPlayedFromLastOptin > 0" [disabled]="!isChecked" [primary]="isChecked" >{{ 'MESSAGES.MESSAGE_14' | translate }}</app-button>
     <!-- <app-button *ngIf="_gamesPlayed == 0" [primary]="isSubscribed" (click)="startGame()" >Play </app-button>
     <app-button *ngIf="_gamesPlayed > 0" [primary]="isSubscribed" (click)="startGame()" >Play for 0.50$</app-button> -->
     <!--<app-button *ngIf="!isSubscribed" [disabled]="!isChecked" [primary]="isChecked" (click)="GoSubscribe()">Subscribe</app-button>-->

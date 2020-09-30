@@ -38,6 +38,7 @@ export class ReturnhomeComponent implements OnInit {
   private _isChecked = false;
   // How many (1st free or billable) games the user has played
   public _gamesPlayed = 0;
+  public _gamesPlayedFromLastOptin = -1;
 
   public errorMsg = "";
   public noMoreRealGames = "Unfortunately, your current plan is not allowed to participate.\nTry using another number.";
@@ -125,12 +126,12 @@ export class ReturnhomeComponent implements OnInit {
     }
     else if (!this.sessionService.isEligible) {
       this.router.navigate(['/home'], { queryParams: { errorCode: 1026 } });
-      
-      
+
     }
     else {
       this._isSubscribed = this.sessionService.isSubscribed;
       this._optIn = this.sessionService.optIn;
+      this._gamesPlayedFromLastOptin = this.sessionService.lastGameResults;
       // this._optIn = false;
       // console.log(this.sessionService.msisdn);
       // console.log("this.session "+this.sessionService.token);
@@ -144,7 +145,7 @@ export class ReturnhomeComponent implements OnInit {
       
       this.dataService.getUserProfile().then( 
         (data:User) => {
-          // console.table(data);
+          console.table(data);
           this.sessionService.user = data;
           this._gamesPlayed = this.sessionService.gamesPlayed;
           

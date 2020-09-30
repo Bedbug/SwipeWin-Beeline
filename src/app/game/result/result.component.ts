@@ -64,6 +64,9 @@ export class ResultComponent implements OnInit {
     // Check Best Score Today
     var bestScore = this.session.user.bestScore;
     var bestScoreToday = this.session.user.bestScoreToday;
+
+    console.log("this.session.user.bestScoreToday:" +this.session.user.bestScoreToday);
+    console.log("this._rightAnswerCount:" +this._rightAnswerCount);
     if(this._rightAnswerCount > bestScoreToday)
       this.session.user.bestScoreToday = this._rightAnswerCount
     if(this._rightAnswerCount > bestScore)

@@ -85,7 +85,12 @@ export class ProfileComponent implements OnInit {
           this._totalPoints = data.totalPoints;
           this._totalGamesCount = data.gamesPlayed;
           this._bestResultAllTime = data.bestScore;
+          console.log("Best Score:" + data.lastBestScore);
+          // if(data.bestScoreToday == null)
+          //   this._bestResultToday = this.sessionService.user.bestScoreToday;
+          // else
           this._bestResultToday = data.bestScoreToday;
+
           this._daysInGame = data.totalDaysPlaying;
           
           if(this._daysInGame == null)

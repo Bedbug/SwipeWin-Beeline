@@ -131,10 +131,11 @@ export class ReturnhomeComponent implements OnInit {
     else {
       this._isSubscribed = this.sessionService.isSubscribed;
       this._optIn = this.sessionService.optIn;
-      this._gamesPlayedFromLastOptin = this.sessionService.lastGameResults;
+      this._gamesPlayedFromLastOptin = this.sessionService.gamesPlayedFromLastOptin;
+    
       // this._optIn = false;
-      // console.log(this.sessionService.msisdn);
-      // console.log("this.session "+this.sessionService.token);
+      console.log("this._optIn "+this._optIn);
+      console.log("this._gamesPlayedFromLastOptin "+this._gamesPlayedFromLastOptin);
       // console.table(this.sessionService);
       // this._cashBackAmount = this.sessionService._cashBackAmount;
       // this._cashBackAmount = 500;

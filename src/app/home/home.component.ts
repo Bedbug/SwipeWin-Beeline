@@ -203,14 +203,14 @@ export class HomeComponent implements OnInit {
             });
             modalSiteDown.show();
           }
-          if (this.showMessage) {
-            console.log("Show message!");
-            let modalIntroMessage = UIkit.modal("#introMes", {
-              escClose: true,
-              bgClose: true,
-            });
-            modalIntroMessage.show();
-          }
+          // if (this.showMessage) {
+          //   console.log("Show message!");
+          //   let modalIntroMessage = UIkit.modal("#introMes", {
+          //     escClose: true,
+          //     bgClose: true,
+          //   });
+          //   modalIntroMessage.show();
+          // }
         },
         (err) => {
           console.error(err);

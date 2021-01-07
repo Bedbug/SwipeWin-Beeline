@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   private anim: any;
   private animationSpeed: number = 1;
   public siteDown = false;
-  public showMessage = true;
+  public showMessage = false;
 
   constructor(
     private dataService: DataService,

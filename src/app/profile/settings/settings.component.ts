@@ -53,7 +53,7 @@ export class SettingsComponent implements OnInit {
             const body = {
               filename: this.selectedFile.name,
               filetype: this.selectedFile.type,
-              value: reader.result.split(',')[1]
+              value: (<string>reader.result).split(',')[1]
             };
             
             this.dataService.saveUserProfile({

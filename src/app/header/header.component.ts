@@ -35,18 +35,18 @@ export class HeaderComponent implements OnInit {
     }
     const that = this;
 
-    UIkit.util.on('#offcanvas-nav', 'hide', function (e) {
-      // do something
-      const currentClass = this
-                            .parentElement
-                            .getElementsByClassName('hamburger-menu')[0]
-                            .children[0]
-                            .className;
+    // UIkit.util.on('#offcanvas-nav', 'hide', function (e) {
+    //   // do something
+    //   console.log(this);
+    //   console.log(this.parentElement);
+    //   console.log(this.parentElement.getElementsByClassName('hamburger-menu'));
+      
+    //   const currentClass = this.parentElement.getElementsByClassName('hamburger-menu')[0].children[0].className;
 
-      if (currentClass.includes('pushed')) {
-        that.toggleClass();
-      }
-    });
+    //   if (currentClass.includes('pushed')) {
+    //     that.toggleClass();
+    //   }
+    // });
     // if(this.session.gameSettings.maintenance != null){
     //   this.siteDown = this.session.gameSettings.maintenance.siteDown
     // } else {

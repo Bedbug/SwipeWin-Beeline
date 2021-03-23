@@ -26,9 +26,9 @@
 // import 'core-js/es6/parse-float';
 // import 'core-js/es6/number';
 // import 'core-js/es6/math';
-import 'core-js/es6/string';
+import 'core-js/es/string';
 // import 'core-js/es6/date';
-import 'core-js/es6/array';
+import 'core-js/es/array';
 // import 'core-js/es6/regexp';
 // import 'core-js/es6/map';
 // import 'core-js/es6/weak-map';
@@ -43,7 +43,7 @@ import 'core-js/es6/array';
 
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
-import 'core-js/es7/reflect';
+import 'core-js/es/reflect';
 
 
 /**

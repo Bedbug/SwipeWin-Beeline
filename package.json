@@ -5,7 +5,7 @@
     "node": "10.16.0"
   },
   "scripts": {
-    "start": "angular-http-server --path ./dist/ --config dist/assets/config/angular-http-server.config.js",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

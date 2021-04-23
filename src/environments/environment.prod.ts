@@ -5,10 +5,9 @@ export const environment = {
   
     // the path to the game server for the game DataService calls
     gameServerDomainUrl: 'https://swipewin-beeline-server.herokuapp.com',
-    
+
     // the path to MTS Authentication API for WebSSO user authentication
     mtsAuthDomainUrl: 'login.mts.ru',
-    
     // the http protocol of the MTS Authentication API for WebSSO user authentication
     mtsAuthDomainProtocol: 'https',
 

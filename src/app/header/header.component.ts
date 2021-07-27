@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   url: string;
   pushed = false;
   alignAllLeft = true;
-
+  that = this;
   public mobileMenuState = false;
   public menuIconPath = 'menu';
   public siteDown = true;
@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit {
   {
     // this.url = router.url;
   }
+
+  
 
   ngOnInit() {
     if(this.translate.currentLang == "ru") {
@@ -35,6 +37,11 @@ export class HeaderComponent implements OnInit {
     }
     const that = this;
 
+    document.getElementById('offcanvas-nav').addEventListener('click', function () {
+     
+      that.pushed = !that.pushed;
+
+    });
     // UIkit.util.on('#offcanvas-nav', 'hide', function (e) {
     //   // do something
     //   console.log(this);
@@ -67,8 +74,14 @@ export class HeaderComponent implements OnInit {
     
   }
 
+ 
+  public test(){
+    console.log("Click!!!");
+  }
+
   public toggleClass() {
     console.log("Toggleing!!!");
+    console.log(this.pushed);
     this.pushed = !this.pushed;
   }
 

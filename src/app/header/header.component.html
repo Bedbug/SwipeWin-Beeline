@@ -2,7 +2,7 @@
   <nav class="uk-navbar-container boundary-align " uk-navbar>
     <ul class="uk-navbar-nav" uk-navbar="dropbar: true; dropbar-mode: push">
       <li>
-        <a class="hamburger-menu " (click)="toggleClass()" uk-toggle="target: #offcanvas-nav">
+        <a class="hamburger-menu " id="test" (click)="toggleClass(); test();" uk-toggle="target: #offcanvas-nav">
           <div class="hamburger-inner" [ngClass]="{'pushed': pushed}">
             <div class="toggle-icon">
               <span class="bar"></span>

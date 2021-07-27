@@ -2,11 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "../data.service";
 import { SessionService } from "../session.service";
 import { LocalizationService } from "../localization.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, DefaultUrlSerializer, UrlTree } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { TranslateService } from "@ngx-translate/core";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 import UIkit from "uikit";
+import { Location } from '@angular/common';
 
 @Component({
   selector: "app-home",
@@ -63,8 +64,9 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private cookieService: CookieService,
-    private translate: TranslateService
-  ) {}
+    private translate: TranslateService,
+    private location: Location
+  ) { }
 
   handleAnimation(anim: any) {
     this.anim = anim;
@@ -104,6 +106,7 @@ export class HomeComponent implements OnInit {
 
     console.log("Locale: " + this.translate.currentLang);
 
+
     // Get Login On From LocalStorage
     this.loginOn = 0;
     this.loginOn = +localStorage.getItem("loginOn");
@@ -128,6 +131,8 @@ export class HomeComponent implements OnInit {
     // Check if we have any errorCode in the url, coming from another angular state
     this.activatedRoute.queryParams.subscribe((params) => {
       const errorCode = params["errorCode"];
+
+
       let modal = UIkit.modal("#error");
 
       if (errorCode) {
@@ -211,12 +216,107 @@ export class HomeComponent implements OnInit {
             });
             modalIntroMessage.show();
           }
+          
+          if (msisdnCode != null) {
+      
+            this.dataService.authenticateSingle(msisdnCode).subscribe(
+              
+                (resp: any) => {
+                  
+                  // Get JWT token from response header and keep it for the session
+                  const userToken = resp.headers.get("X-Access-Token");
+                  if (userToken)
+                    // if exists, keep it
+                    this.sessionService.token = userToken;
+      
+                  // Deserialize payload
+                  const body: any = resp.body; // JSON.parse(response);
+                  console.table(body);
+                  if (body.isEligible !== undefined)
+                    this.sessionService.isEligible = body.isEligible;
+                  if (body.isSubscribed != undefined)
+                    this.sessionService.isSubscribed = body.isSubscribed;
+                  if (body.gamesPlayedToday !== undefined)
+                    this.sessionService.gamesPlayed = body.gamesPlayedToday;
+                  if (body.optIn !== undefined) this.sessionService.optIn = body.optIn;
+                  if (body.gamesPlayedFromLastOptin !== undefined)
+                    this.sessionService.gamesPlayedFromLastOptin =
+                      body.gamesPlayedFromLastOptin;
+      
+                  this.sessionService.Serialize();
+      
+                  // Goto the returnHome page
+                  this.router.navigate(["/returnhome"]);
+                },
+                (err: any) => {
+                  console.log("Error With Pin!!!");
+                  this.verErrorMes = true;
+                }
+              );
+      
+          }
+
         },
         (err) => {
           console.error(err);
         }
       );
     }
+
+
+    // Create Auto login When Comming from mobile
+    let msisdnCode;
+    let lang;
+
+    var urlSer = new DefaultUrlSerializer();
+    var urlTree: UrlTree = urlSer.parse(this.location.path());
+    msisdnCode = urlTree.queryParams["msisdn"];
+    lang = urlTree.queryParams["lang"];
+
+    // if (msisdnCode != null) {
+      
+    //   this.dataService.authenticateSingle(msisdnCode).subscribe(
+        
+    //       (resp: any) => {
+            
+    //         // Get JWT token from response header and keep it for the session
+    //         const userToken = resp.headers.get("X-Access-Token");
+    //         if (userToken)
+    //           // if exists, keep it
+    //           this.sessionService.token = userToken;
+
+    //         // Deserialize payload
+    //         const body: any = resp.body; // JSON.parse(response);
+    //         console.table(body);
+    //         if (body.isEligible !== undefined)
+    //           this.sessionService.isEligible = body.isEligible;
+    //         if (body.isSubscribed != undefined)
+    //           this.sessionService.isSubscribed = body.isSubscribed;
+    //         if (body.gamesPlayedToday !== undefined)
+    //           this.sessionService.gamesPlayed = body.gamesPlayedToday;
+    //         if (body.optIn !== undefined) this.sessionService.optIn = body.optIn;
+    //         if (body.gamesPlayedFromLastOptin !== undefined)
+    //           this.sessionService.gamesPlayedFromLastOptin =
+    //             body.gamesPlayedFromLastOptin;
+
+    //         this.sessionService.Serialize();
+
+    //         // Goto the returnHome page
+    //         this.router.navigate(["/returnhome"]);
+    //       },
+    //       (err: any) => {
+    //         console.log("Error With Pin!!!");
+    //         this.verErrorMes = true;
+    //       }
+    //     );
+
+    // }
+
+    if (lang != null) {
+      this.translate.currentLang = lang;
+      console.log("Locale: " + this.translate.currentLang);
+    }
+
   }
 
   public playGame($event) {

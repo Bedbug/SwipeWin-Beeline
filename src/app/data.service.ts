@@ -68,7 +68,7 @@ export class DataService {
         observe: 'response'
       });
     }
-
+    
 
     /*
     let promise = new Promise((resolve, reject) => {
@@ -96,7 +96,28 @@ export class DataService {
     return promise;
     */
   }
-  
+  authenticateSingle(msisdnCode) {
+    console.log("this.session.gameSettings: " + this.session.gameSettings.maintenance);
+    console.log("this.session.gameSettings: " + this.session.gameSettings.siteDown);
+    console.log("this.session.gameSettings: " + this.session.gameSettings.noGames);
+    if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
+      this.router.navigate(['/home']);
+      return throwError('Game is unavailable or under maintenance');
+    }
+    else {
+
+      const url = encodeURI(`${environment.gameServerDomainUrl}/api/user/single-signon`);
+      const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'};
+      if (this.session && this.session.token)
+        headers['X-Access-Token'] = this.session.token;
+
+      return this.http.post(url, { msisdnCode: msisdnCode }, {
+        headers: headers,
+        observe: 'response'
+      });
+    }
+  }
+
   authenticateVerify(msisdn, pin) {
 
     if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
